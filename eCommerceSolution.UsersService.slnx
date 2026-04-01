@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="G:/ASP.NET Core/eCommerceSolution.UsersService/eCommerce.API/eCommerce.API.csproj" />
+  <Project Path="G:/ASP.NET Core/eCommerceSolution.UsersService/eCommerce.Core/eCommerce.Core.csproj" />
+  <Project Path="G:/ASP.NET Core/eCommerceSolution.UsersService/eCommerce.Infrastructure/eCommerce.Infrastructure.csproj" />
+</Solution>
