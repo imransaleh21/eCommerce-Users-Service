@@ -17,6 +17,20 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(ApplicationUserMappingProfile)
 
 // Enable FluentValidation auto-validation (temporary approach)
 builder.Services.AddFluentValidationAutoValidation();
+// Add API explorer services to the container, which will allow the application to discover and describe API endpoints for documentation purposes.
+builder.Services.AddEndpointsApiExplorer();
+// Add Swagger generation services to the container, which will generate Swagger/OpenAPI documentation for the API endpoints.
+builder.Services.AddSwaggerGen();
+// Add CORS services to the container, which will allow the application to specify cross-origin resource sharing policies for the API endpoints.
+builder.Services.AddCors( options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Replace with your frontend URL
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 var app = builder.Build();
 
 // Use custom exception handling middleware to catch and log exceptions globally.
@@ -28,6 +42,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 // Use routing middleware to route incoming HTTP requests to the appropriate controllers and actions.
 app.UseRouting();
+// Use Swagger middleware to serve the generated Swagger/OpenAPI documentation as a JSON endpoint, which can be accessed by tools like Swagger UI or Postman for API testing and exploration.
+app.UseSwagger();
+// Use Swagger UI middleware to serve the Swagger UI, which provides an interactive interface for exploring and testing the API endpoints.
+app.UseSwaggerUI();
+// Use CORS middleware to enable Cross-Origin Resource Sharing (CORS) for the API, allowing requests from different origins to access the API resources.
+app.UseCors();
 // Use authentication and authorization middleware.
 app.UseAuthentication();
 app.UseAuthorization();

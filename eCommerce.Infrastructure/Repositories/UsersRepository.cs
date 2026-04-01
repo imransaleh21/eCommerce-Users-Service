@@ -11,7 +11,7 @@ namespace eCommerce.Infrastructure.Repositories;
 /// such as adding new users and retrieving users based on their email and password. 
 /// This class serves as a concrete implementation of the repository pattern for user management in the eCommerce application.
 /// </summary>
-internal class UsersRepository : IUsersRepository
+public class UsersRepository : IUsersRepository
 {
     private readonly DapperDbContext _dbContext;
     public UsersRepository(DapperDbContext dapperDbContext)
