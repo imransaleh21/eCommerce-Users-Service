@@ -14,8 +14,11 @@ public class DapperDbContext
         _configuration = configuration;
         // Retrieve the connection string for the PostgreSQL database from the configuration and create a new NpgsqlConnection using that connection string,
         // which will be used for database operations in the DapperDbContext.
-        string? connectionString = _configuration.GetConnectionString("PostgreSqlConnection");
-        _dbConnection = new NpgsqlConnection(connectionString);
+        string connectionStringTemp = _configuration.GetConnectionString("PostgreSqlConnection")!;
+        string connectionStr = connectionStringTemp
+            .Replace("$POSTGRES_HOST", Environment.GetEnvironmentVariable("POSTGRES_HOST"))
+            .Replace("$POSTGRES_PASSWORD", Environment.GetEnvironmentVariable("POSTGRES_PASSWORD"));
+        _dbConnection = new NpgsqlConnection(connectionStr);
     }
     public IDbConnection GetDbConnection => _dbConnection;
 }
