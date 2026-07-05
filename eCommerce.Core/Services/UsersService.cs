@@ -15,10 +15,18 @@ internal class UsersService : IUsersService
         _usersRepository = usersRepository;
         _mapper = mapper;
     }
+
+    public async Task<UserResponseDTO?> GetUserById(Guid? userId)
+    {
+        ApplicationUser? userById = await _usersRepository.GetUserById(userId);
+        if (userById == null) return null;
+        return _mapper.Map<UserResponseDTO>(userById);
+    }
+
     public async Task<AuthenticationResponse?> Login(LoginRequest loginRequest)
     {
-      ApplicationUser? applicationUser = await _usersRepository.GetUserByEmailAndPassword(loginRequest.Email, loginRequest.Password);
-        if (applicationUser == null)  return null;
+        ApplicationUser? applicationUser = await _usersRepository.GetUserByEmailAndPassword(loginRequest.Email, loginRequest.Password);
+        if (applicationUser == null) return null;
         return _mapper.Map<AuthenticationResponse>(applicationUser) with { IsAuthenticated = true, Token = "AuthToken" };
     }
     public async Task<AuthenticationResponse?> Register(RegisterRequest registerRequest)

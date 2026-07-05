@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using eCommerce.Core.Entities;
-using eCommerce.Core.Enums;
 using eCommerce.Core.RepositoryContracts;
 using eCommerce.Infrastructure.DbContext;
 
@@ -49,5 +48,14 @@ public class UsersRepository : IUsersRepository
 
         if (authUser is not null) return authUser;
         else return null;
+    }
+
+    public async Task<ApplicationUser?> GetUserById(Guid? userId)
+    {
+        string query = "SELECT * FROM public.\"Users\"" +
+            "WHERE \"UserId\" = @UserId";
+        ApplicationUser? authUser = await _dbContext.GetDbConnection.QueryFirstOrDefaultAsync<ApplicationUser>(query,
+            new { UserId = userId });
+        return authUser;
     }
 }

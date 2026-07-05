@@ -25,4 +25,10 @@ public interface IUsersService
     /// <returns>A task that represents the asynchronous operation. The task result contains an AuthenticationResponse object
     /// with the outcome of the registration process, or null if registration fails.</returns>
     Task<AuthenticationResponse?> Register(RegisterRequest registerRequest);
+    /// <summary>
+    /// Retrieves user details based on the provided user ID. Returns an authentication response containing user information if the user exists.
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task<UserResponseDTO?> GetUserById(Guid? userId);
 }
