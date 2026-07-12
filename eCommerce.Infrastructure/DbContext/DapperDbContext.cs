@@ -17,7 +17,9 @@ public class DapperDbContext
         string connectionStringTemp = _configuration.GetConnectionString("PostgreSqlConnection")!;
         string connectionStr = connectionStringTemp
             .Replace("$POSTGRES_HOST", Environment.GetEnvironmentVariable("POSTGRES_HOST"))
-            .Replace("$POSTGRES_PASSWORD", Environment.GetEnvironmentVariable("POSTGRES_PASSWORD"));
+            .Replace("$POSTGRES_PORT", Environment.GetEnvironmentVariable("POSTGRES_PORT"))
+            .Replace("$POSTGRES_PASSWORD", Environment.GetEnvironmentVariable("POSTGRES_PASSWORD"))
+            .Replace("$POSTGRES_DB", Environment.GetEnvironmentVariable("POSTGRES_DB"));
         _dbConnection = new NpgsqlConnection(connectionStr);
     }
     public IDbConnection GetDbConnection => _dbConnection;
