@@ -3,6 +3,7 @@ using eCommerce.Core;
 using eCommerce.Core.Mappers;
 using eCommerce.Infrastructure;
 using FluentValidation.AspNetCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add Infrastructure services to the container.
@@ -10,7 +11,11 @@ builder.Services.AddInfrastructure();
 // Add Core services to the container.
 builder.Services.AddCore();
 // Add controllers to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 // Add AutoMapper services to the container, specifying the assembly that contains the mapping profiles.
 // Here assembly is determined by the ApplicationUserMappingProfile class, So that further mapping profiles in the same assembly will also be registered automatically.
 builder.Services.AddAutoMapper(cfg => { }, typeof(ApplicationUserMappingProfile).Assembly);
