@@ -22,6 +22,9 @@ namespace eCommerce.API.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserById(Guid userId)
         {
+            //await Task.Delay(1000); // Simulate a delay of 1 second
+            //throw new NotImplementedException();
+
             if (userId == Guid.Empty) return BadRequest("Invalid user ID.");
             
             UserResponseDTO? authenticationResponse = await _usersService.GetUserById(userId);

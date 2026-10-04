@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="C:/ASP.NET/eCommerce-Users-Service/eCommerce.API/eCommerce.API.csproj" />
-  <Project Path="C:/ASP.NET/eCommerce-Users-Service/eCommerce.Core/eCommerce.Core.csproj" />
-  <Project Path="C:/ASP.NET/eCommerce-Users-Service/eCommerce.Infrastructure/eCommerce.Infrastructure.csproj" />
+  <Project Path="F:/eCommerce-Microservices/eCommerce-Users-Service/eCommerce.API/eCommerce.API.csproj" />
+  <Project Path="F:/eCommerce-Microservices/eCommerce-Users-Service/eCommerce.Core/eCommerce.Core.csproj" />
+  <Project Path="F:/eCommerce-Microservices/eCommerce-Users-Service/eCommerce.Infrastructure/eCommerce.Infrastructure.csproj" />
 </Solution>
